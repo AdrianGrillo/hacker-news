@@ -13,8 +13,8 @@ export default function Nav() {
         <div>
             <ThemeConsumer>
                 {({ theme, toggleTheme }) => (
-                    <nav>
-                        <ul>
+                    <nav className='row space-between'>
+                        <ul className='row nav'>
                             <li>
                                 <NavLink
                                     to='/'
@@ -35,10 +35,11 @@ export default function Nav() {
                             </li>
                         </ul>
                         <button
-                            style={{ fontSize: 30 }}
-                            onClick={toggleTheme}
+                        className='btn-clear'
+                        style={{ fontSize: 30 }}
+                        onClick={toggleTheme}
                         >
-                            {theme === 'light' ? '💡' : '🔦'}
+                            {theme === 'light' ? '🔦' : '💡'}
                         </button>
                     </nav>
                 )}

@@ -9,8 +9,10 @@ import {
   Switch
 } from 'react-router-dom'
 import Nav from '../components/Nav'
-import Top from '../components/Top'
 import Loading from '../components/Loading'
+import { fetchItem } from '../utility/api'
+
+const Posts = React.lazy(() => import('../components/Posts'))
 
 export default class App extends React.Component {
   state = {
@@ -29,10 +31,22 @@ export default class App extends React.Component {
       <Router>
         <ThemeProvider value={this.state}>
           <div className={this.state.theme}>
-            {/* <Nav /> */}
-            <Loading />
-            {/* <Top /> */}
-
+            <div className='container'>
+              <Nav />
+              <React.Suspense fallback={<Loading />}>
+                <Switch>
+                  <Route 
+                    exact path='/' 
+                    render={() => <Posts type='top' />}
+                  />
+                  <Route 
+                    path='/new' 
+                    render={() => <Posts type='new' />}
+                  />
+                  <Route render={() => <h1>404</h1>} />
+                </Switch>
+              </React.Suspense>
+            </div>
           </div>
         </ThemeProvider>
       </Router>
