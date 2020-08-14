@@ -1,5 +1,5 @@
 import React from 'react'
-import { ThemeConsumer } from './Themes'
+import { ThemeConsumer } from '../contexts/Themes'
 import { NavLink } from 'react-router-dom'
 
 const activeStyle = {
@@ -35,9 +35,9 @@ export default function Nav() {
                             </li>
                         </ul>
                         <button
-                        className='btn-clear'
-                        style={{ fontSize: 30 }}
-                        onClick={toggleTheme}
+                            className='btn-clear'
+                            style={{ fontSize: 30 }}
+                            onClick={toggleTheme}
                         >
                             {theme === 'light' ? '🔦' : '💡'}
                         </button>

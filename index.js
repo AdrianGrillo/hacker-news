@@ -1,16 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import { ThemeProvider } from '../components/Themes'
+import { ThemeProvider } from '../contexts/Themes'
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   Switch
 } from 'react-router-dom'
 import Nav from '../components/Nav'
 import Loading from '../components/Loading'
-import { fetchItem } from '../utility/api'
+import User from '../components/User'
+import Post from '../components/Post'
 
 const Posts = React.lazy(() => import('../components/Posts'))
 
@@ -35,13 +35,21 @@ export default class App extends React.Component {
               <Nav />
               <React.Suspense fallback={<Loading />}>
                 <Switch>
-                  <Route 
-                    exact path='/' 
+                  <Route
+                    exact path='/'
                     render={() => <Posts type='top' />}
                   />
-                  <Route 
-                    path='/new' 
+                  <Route
+                    path='/new'
                     render={() => <Posts type='new' />}
+                  />
+                  <Route
+                    path='/user'
+                    component={User}
+                  />
+                  <Route
+                    path='/post'
+                    component={Post}
                   />
                   <Route render={() => <h1>404</h1>} />
                 </Switch>

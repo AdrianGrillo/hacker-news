@@ -37,27 +37,27 @@ export function fetchComments(ids) {
 
 export function fetchMainPosts(type) {
     return fetch(`${api}/${type}stories${json}`)
-    .then((res) => res.json())
-    .then((ids) => {
-        if(!ids) {
-            throw new Error(`There was a problem fetching ${type} posts`)
-        }
-        return ids.slice(0, 50)
-    })
-    .then((ids) => Promise.all(ids.map(fetchItem)))
-    .then((posts) => removeDeleted(onlyPosts(removeDead(posts))))
-} 
+        .then((res) => res.json())
+        .then((ids) => {
+            if (!ids) {
+                throw new Error(`There was a problem fetching ${type} posts`)
+            }
+            return ids.slice(0, 50)
+        })
+        .then((ids) => Promise.all(ids.map(fetchItem)))
+        .then((posts) => removeDeleted(onlyPosts(removeDead(posts))))
+}
 
 // this function prompts the API for a specific type of post then takes the ids from the first 50
-// it passes one of those ids to fetchItem 50 times and resolves them all at once using Promise.all
+// it passes each of those ids to fetchItem 50 times and resolves them all at once using Promise.all
 // then filters everything except for posts
 
 export function fetchUser(id) {
     return fetch(`${api}/user/${id}${json}`)
-    .then((res) => res.json())
+        .then((res) => res.json())
 }
 
 export function fetchPosts(ids) {
     return Promise.all(ids.map(fetchItem))
-    .then((posts) => removeDeleted(onlyPosts(removeDead(posts))))
+        .then((posts) => removeDeleted(onlyPosts(removeDead(posts))))
 }

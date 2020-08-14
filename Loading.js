@@ -21,9 +21,9 @@ export default class Loading extends React.Component {
         text: PropTypes.string.isRequired,
         speed: PropTypes.number.isRequired
     }
-        
+
     static defaultProps = {
-        text: 'Loading',
+        text: 'blowing a huge load',
         speed: 300
     }
 
